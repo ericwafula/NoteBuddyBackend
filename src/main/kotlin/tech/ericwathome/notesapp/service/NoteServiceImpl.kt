@@ -34,7 +34,7 @@ class NoteServiceImpl(
     }
 
     override fun searchNotes(title: String): List<Note> {
-        return noteRepository.findAllByTitleIgnoreCase(title)
+        return noteRepository.findNoteByTitleContainsIgnoreCase(title)
     }
 
     override fun updateNote(id: Long, noteDto: NoteDto) {

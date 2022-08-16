@@ -6,5 +6,5 @@ import tech.ericwathome.notesapp.model.Note
 
 @Repository
 interface NoteRepository : JpaRepository<Note, Long> {
-    fun findAllByTitleIgnoreCase(name: String): List<Note>
+    fun findNoteByTitleContainsIgnoreCase(title: String): List<Note>
 }
