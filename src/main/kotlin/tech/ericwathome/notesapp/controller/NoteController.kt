@@ -39,6 +39,11 @@ class NoteController(
         return ResponseEntity(noteService.findNote(id), HttpStatus.OK)
     }
 
+    @GetMapping("search")
+    fun searchForNote(@RequestParam("title") title: String): ResponseEntity<List<Note>> {
+        return ResponseEntity(noteService.searchNotes(title), HttpStatus.OK)
+    }
+
     @PatchMapping("update")
     fun updateNote(@RequestParam("id") id: Long, @RequestBody noteDto: NoteDto): ResponseEntity<ResponseMessage> {
         val message = ResponseMessage("note with id: $id updated successfully")
