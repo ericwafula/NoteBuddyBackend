@@ -6,6 +6,7 @@ import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
+import javax.persistence.Lob
 
 @Entity
 data class Note(
@@ -14,7 +15,9 @@ data class Note(
     )
     @Id
     var id: Long? = null,
+    @Lob
     var title: String,
+    @Lob
     var description: String,
     val dateOfCreation: Date
 ) {
