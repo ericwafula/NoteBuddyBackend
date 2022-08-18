@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import tech.ericwathome.notesapp.dto.NoteDto
+import tech.ericwathome.notesapp.dto.PageDto
 import tech.ericwathome.notesapp.dto.ResponseMessage
 import tech.ericwathome.notesapp.model.Note
 import tech.ericwathome.notesapp.service.NoteService
@@ -30,18 +31,13 @@ class NoteController(
     }
 
     @GetMapping
-    fun allNotes(): ResponseEntity<List<Note>> {
-        return ResponseEntity(noteService.allNotes(), HttpStatus.OK)
+    fun allNotes(@RequestParam(defaultValue = "0") page: Int): ResponseEntity<PageDto> {
+        return ResponseEntity(noteService.allNotes(page), HttpStatus.OK)
     }
 
     @GetMapping("find")
     fun findNote(@RequestParam("id") id: Long): ResponseEntity<Note> {
         return ResponseEntity(noteService.findNote(id), HttpStatus.OK)
-    }
-
-    @GetMapping("search")
-    fun searchForNote(@RequestParam("title") title: String): ResponseEntity<List<Note>> {
-        return ResponseEntity(noteService.searchNotes(title), HttpStatus.OK)
     }
 
     @PatchMapping("update")
